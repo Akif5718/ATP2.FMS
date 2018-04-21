@@ -49,8 +49,10 @@
     <Compile Include="BaseRepo.cs" />
     <Compile Include="EducationalBackgroundRepo.cs" />
     <Compile Include="IRepository.cs" />
+    <Compile Include="OwnerInfoRepo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repository.cs" />
+    <Compile Include="UserInfoRepo.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\FMS_Data\FMS_Data.csproj">
