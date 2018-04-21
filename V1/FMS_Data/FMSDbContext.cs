@@ -21,7 +21,7 @@ namespace FMS_Data
         public DbSet<PostAProject> PostAProjects { get; set; }
         public DbSet<ResponseToaJob> Response { get; set; }
         public DbSet<SkillCategory> SkillCategories { get; set; }
-        public DbSet<Skill> skills { get; set; }    
+        public DbSet<Skill> Skills { get; set; }    
         public DbSet<EducationalBackground> EducationalBackgrounds { get; set; }
         public DbSet<WorkHistory> WorkHistories { get; set; }
         public DbSet<ProjectSkills> ProjectSkills { get; set; }

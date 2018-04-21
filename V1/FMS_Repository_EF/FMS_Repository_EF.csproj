@@ -50,9 +50,14 @@
     <Compile Include="EducationalBackgroundRepo.cs" />
     <Compile Include="IRepository.cs" />
     <Compile Include="OwnerInfoRepo.cs" />
+    <Compile Include="PaymentRepo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repository.cs" />
+    <Compile Include="SkillCategoryRepo.cs" />
+    <Compile Include="SkillRepo.cs" />
     <Compile Include="UserInfoRepo.cs" />
+    <Compile Include="WorkerInfoRepo.cs" />
+    <Compile Include="WorkHistoryRepo.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\FMS_Data\FMS_Data.csproj">
