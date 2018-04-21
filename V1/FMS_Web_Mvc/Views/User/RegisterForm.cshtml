@@ -7,26 +7,19 @@
 <html lang="en">
 @using (Html.BeginForm("RegisterForm", "User"))
 {
-
     <div class="row">
-
         <div class="col-md-3"></div>
         <div class="col-md-4">
-
-
             <form class="form-horizontal">
-               
                     <h3 align="center">LanceBucket</h3><
                     <hr />
                     <h6 align="center"> Sign Up for Free Today!</h6>
                     
                     <hr />
-
-
                     <div class="form-group">
                         <label for="inputName" class="col-lg-2 control-label"></label>
                         <div class="col-lg-10">
-                            <input class="form-control" id="inputName" placeholder=" FristName" type="text">
+                            <input class="form-control" name="FristName" id="inputFName" placeholder=" FristName" type="text">
                         </div>
 
                     </div>
@@ -35,7 +28,7 @@
                     <div class="form-group">
                         <label for="inputName" class="col-lg-2 control-label"></label>
                         <div class="col-lg-10">
-                            <input class="form-control" id="inputName" placeholder=" LastName" type="text">
+                            <input class="form-control" name="LastName" id="inputLName" placeholder=" LastName" type="text">
                         </div>
 
                     </div>
@@ -43,7 +36,7 @@
                     <div class="form-group">
                         <label for="inputUserName" class="col-lg-2 control-label"></label>
                         <div class="col-lg-10">
-                            <input class="form-control" id="inputUserName" placeholder="Email" type="email">
+                            <input class="form-control" name="Email" id="inputUserName" placeholder="Email" type="email">
                         </div>
                     </div>
 
@@ -51,13 +44,13 @@
                     <div class="form-group">
                         <label for="inputPassword" class="col-lg-2 control-label"></label>
                         <div class="col-lg-10">
-                            <input class="form-control" id="inputPassword" placeholder="Password" type="password">
+                            <input class="form-control" name="Password" id="inputPassword" placeholder="Password" type="password">
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="inputConfirmPassword" class="col-lg-2 control-label"></label>
                         <div class="col-lg-10">
-                            <input class="form-control" id="inputConfirmPassword" placeholder="Confirm Password" type="password">
+                            <input class="form-control"  id="inputConfirmPassword" placeholder="Confirm Password" type="password">
                         </div>
                     </div>
 
@@ -66,7 +59,7 @@
                         <div class="form-group">
                             <label for="inputName" class="col-lg-2 control-label"></label>
                             <div class="col-lg-10">
-                                <input class="form-control" id="inputName" type="date" value="bday" placeholder="JoinDate" max="2018-12-31">
+                                <input class="form-control" id="inputName1" name="DateofBrith" type="text" onfocus="(this.type='date')" onblur="(this.type='text')" placeholder="DateofBrith" >
                             </div>
 
                         </div>
@@ -75,7 +68,7 @@
                     <div class="form-group">
                         <label for="inputName" class="col-lg-2 control-label"></label>
                         <div class="col-lg-10">
-                            <input class="form-control" id="inputName" type="date" name="bday" placeholder="DateofBrith" max="2018-12-31">
+                            <input class="form-control" id="inputName2" type="text" onfocus="(this.type='date')" onblur="(this.type='text')" name="JoinDate" placeholder="Join Date">
                         </div>
 
                     </div>
@@ -83,14 +76,14 @@
                     <div class="form-group">
                         <label for="inputName" class="col-lg-2 control-label"></label>
                         <div class="col-lg-10">
-                            <input class="form-control" id="inputName" placeholder="State" type="text">
+                            <input class="form-control" name="State" id="inputName" placeholder="State" type="text">
                         </div>
                     </div>
 
                     <div class="form-group">
                         <label for="inputName" class="col-lg-2 control-label"></label>
                         <div class="col-lg-10">
-                            <input class="form-control" id="inputName" placeholder=" City" type="text">
+                            <input class="form-control" name="City" id="inputName" placeholder=" City" type="text">
                         </div>
                     </div>
 
@@ -115,12 +108,12 @@
                         <div class="col-lg-10">
                             <div class="radio">
 
-                                <input name="Type" id="optionsRadios1" value="Owner" checked="" type="radio">
+                                <input name="UserType" id="optionsRadios1" value="Owner" checked="" type="radio">
                                 Hire
 
                             </div>
                             <div class="radio">
-                                <input name="Type" id="optionsRadios2" value="Worker" type="radio">
+                                <input name="UserType" id="optionsRadios2" value="Worker" type="radio">
                                 Worker
                             </div>
                         </div>
@@ -130,7 +123,7 @@
                     </div>
                     <div class="form-group">
                         <div class="col-md-offset-2 col-md-10">
-                            <input type="submit" value="  Create Account  " class="btn btn-default btn-block" />
+                            <input type="submit" name="submit" value="  Create Account  " class="btn btn-default btn-block" />
                         </div>
                     </div>
 

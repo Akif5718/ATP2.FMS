@@ -14,8 +14,6 @@ namespace FMS_RepositoryOracle
 {
     public class UserDAO
     {
-        public class UserInfoDao
-        {
             public Result<UserInfo> Save(UserInfo userinfo)
             {
                 var result = new Result<UserInfo>();
@@ -23,11 +21,13 @@ namespace FMS_RepositoryOracle
                 {
                     string query = "select * from UserInfo where UserId=" + userinfo.UserId;
                     var dt = DataAccess.GetDataTable(query);
-
+                   
                     if (dt == null || dt.Rows.Count == 0)
                     {
                         userinfo.UserId = GetId();
-                        query = "insert into UserInfo values(" + userinfo.UserId + ",'" + userinfo.FristName + "','" + userinfo.LastName + "','" + userinfo.Email + "','" + userinfo.Password + "'," + userinfo.DateofBrith + ",'" + userinfo.JoinDate + "','" + userinfo.City + "','" + userinfo.State + "','" + userinfo.Country + "','" + userinfo.UserType + "')";
+                        var d = userinfo.JoinDate.ToString(string.Format("dd/MMM/yyyy"));
+                        var b = userinfo.DateofBrith.ToString(string.Format("dd/MMM/yyyy"));
+                        query = "insert into UserInfo values(" + userinfo.UserId + ",'" + userinfo.FristName + "','" + userinfo.LastName + "','" + userinfo.Email + "','" + userinfo.Password + "','" +b + "','" + d + "','','" + userinfo.City + "','" + userinfo.State + "','" + userinfo.Country + "',"+0+",'" + userinfo.UserType + "')";
                     }
                     else
                     {
@@ -176,12 +176,12 @@ namespace FMS_RepositoryOracle
                     result.Message = "InvalUserId Email";
                     return false;
                 }
-                if (!ValidationHelper.IsStringValid(obj.Password) || obj.Password.Length < 8)
-                {
-                    result.HasError = true;
-                    result.Message = "InvalUserId Password";
-                    return false;
-                }
+                //if (!ValidationHelper.IsStringValid(obj.Password) || obj.Password.Length < 8)
+                //{
+                //    result.HasError = true;
+                //    result.Message = "InvalUserId Password";
+                //    return false;
+                //}
               
                 return true;
             }
@@ -212,5 +212,5 @@ namespace FMS_RepositoryOracle
 
             }
         }
-    }
-}
+ }
+
