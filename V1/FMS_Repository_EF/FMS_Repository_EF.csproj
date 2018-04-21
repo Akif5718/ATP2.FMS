@@ -51,7 +51,7 @@
     <Compile Include="User\EducationalBackgroundRepo.cs" />
     <Compile Include="Others\IRepository.cs" />
     <Compile Include="User\OwnerInfoRepo.cs" />
-    <Compile Include="PaymentRepo.cs" />
+    <Compile Include="Others\PaymentRepo.cs" />
     <Compile Include="Project\PostAProjectRepo.cs" />
     <Compile Include="Project\ProjectSectionRepo.cs" />
     <Compile Include="Project\ProjectSkillRepo.cs" />
