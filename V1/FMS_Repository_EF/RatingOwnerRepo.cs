@@ -1,32 +1,32 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using FMS_Entities;
 using FMS_Framework.Helper;
 using FMS_Framework.Object;
-using OwnerInfo = FMS_Entities.OwnerInfo;
+using RatingOwner = FMS_Entities.RatingOwner;
 namespace FMS_Repository_EF
 {
-    class OwnerInfoRepo:BaseRepo
+    class RatingOwnerRepo:BaseRepo
     {
-        public Result<OwnerInfo> Save(OwnerInfo userinfo)
+        public Result<RatingOwner> Save(RatingOwner userinfo)
         {
-            var result = new Result<OwnerInfo>();
+            var result = new Result<RatingOwner>();
             try
             {
-                var objtosave = DbContext.OwnerInfos.FirstOrDefault(u => u.UserId == userinfo.UserId);
+                var objtosave = DbContext.RatingOwners.FirstOrDefault(u => u.UserId == userinfo.UserId);
                 if (objtosave == null)
                 {
-                    objtosave = new OwnerInfo();
-                    DbContext.OwnerInfos.Add(objtosave);
+                    objtosave = new RatingOwner();
+                    DbContext.RatingOwners.Add(objtosave);
                 }
-                objtosave.CompanyName = userinfo.CompanyName;
-                objtosave.CompanyAddress = userinfo.CompanyAddress;
-                objtosave.CompanyCode = userinfo.CompanyCode;
-
-                objtosave.Position = userinfo.Position;
+                objtosave.CommunicationSkill = userinfo.CommunicationSkill;
+                objtosave.Reliability = userinfo.Reliability;
+                objtosave.OnWord = userinfo.OnWord;
+                objtosave.Behaviour = userinfo.Behaviour;
 
 
                 if (!IsValid(objtosave, result))
@@ -43,45 +43,45 @@ namespace FMS_Repository_EF
             return result;
         }
 
-        private bool IsValid(OwnerInfo obj, Result<OwnerInfo> result)
+        private bool IsValid(RatingOwner obj, Result<RatingOwner> result)
         {
-            if (!ValidationHelper.IsStringValid(obj.CompanyName))
+            if (!ValidationHelper.IsStringValid(obj.CommunicationSkill.ToString()))
             {
                 result.HasError = true;
-                result.Message = "Invalid CompanyName";
+                result.Message = "Invalid CommunicationSkill";
                 return false;
             }
-           
 
-            if (!ValidationHelper.IsStringValid(obj.CompanyAddress))
+
+            if (!ValidationHelper.IsStringValid(obj.Reliability.ToString()))
             {
                 result.HasError = true;
-                result.Message = "Invalid CompanyAddress";
+                result.Message = "Invalid Reliability";
                 return false;
             }
-            if (!ValidationHelper.IsStringValid(obj.CompanyCode))
+            if (!ValidationHelper.IsStringValid(obj.OnWord.ToString()))
             {
                 result.HasError = true;
-                result.Message = "Invalid CompanyCode";
+                result.Message = "Invalid OnWord";
                 return false;
             }
-            if (!ValidationHelper.IsStringValid(obj.Position))
+            if (!ValidationHelper.IsStringValid(obj.Behaviour.ToString()))
             {
                 result.HasError = true;
-                result.Message = "Invalid Position";
+                result.Message = "Invalid Behaviour";
                 return false;
             }
 
             return true;
         }
 
-        public Result<List<OwnerInfo>> GetAll(string key = "")
+        public Result<List<RatingOwner>> GetAll(string key = "")
         {
-            var result = new Result<List<OwnerInfo>>() { Data = new List<OwnerInfo>() };
+            var result = new Result<List<RatingOwner>>() { Data = new List<RatingOwner>() };
 
             try
             {
-                IQueryable<OwnerInfo> query = DbContext.OwnerInfos;
+                IQueryable<RatingOwner> query = DbContext.RatingOwners;
 
                 if (ValidationHelper.IsIntValid(key))
                 {
@@ -90,26 +90,26 @@ namespace FMS_Repository_EF
 
                 if (ValidationHelper.IsStringValid(key))
                 {
-                    query = query.Where(q => q.CompanyName.Contains(key));
+                    query = query.Where(q => q.CommunicationSkill == Int32.Parse(key));
 
                 }
 
                 if (ValidationHelper.IsStringValid(key))
                 {
-                    query = query.Where(q => q.CompanyAddress.Contains(key));
+                    query = query.Where(q => q.Reliability == Int32.Parse(key));
 
                 }
 
                 if (ValidationHelper.IsStringValid(key))
                 {
-                    query = query.Where(q => q.CompanyCode.Contains(key));
+                    query = query.Where(q => q.OnWord == Int32.Parse(key));
 
                 }
 
 
                 if (ValidationHelper.IsStringValid(key))
                 {
-                    query = query.Where(q => q.Position.Contains(key));
+                    query = query.Where(q => q.Behaviour == Int32.Parse(key));
 
                 }
                 result.Data = query.ToList();
@@ -124,13 +124,13 @@ namespace FMS_Repository_EF
             return result;
         }
 
-        public Result<OwnerInfo> GetByID(int id)
+        public Result<RatingOwner> GetByID(int id)
         {
-            var result = new Result<OwnerInfo>();
+            var result = new Result<RatingOwner>();
 
             try
             {
-                var obj = DbContext.OwnerInfos.FirstOrDefault(c => c.UserId == id);
+                var obj = DbContext.RatingOwners.FirstOrDefault(c => c.UserId == id);
                 if (obj == null)
                 {
                     result.HasError = true;
@@ -157,7 +157,7 @@ namespace FMS_Repository_EF
 
             try
             {
-                var objtodelete = DbContext.OwnerInfos.FirstOrDefault(c => c.UserId == id);
+                var objtodelete = DbContext.RatingOwners.FirstOrDefault(c => c.UserId == id);
                 if (objtodelete == null)
                 {
                     result.HasError = true;
@@ -167,7 +167,7 @@ namespace FMS_Repository_EF
 
                 }
 
-                DbContext.OwnerInfos.Remove(objtodelete);
+                DbContext.RatingOwners.Remove(objtodelete);
                 DbContext.SaveChanges();
 
             }
@@ -181,7 +181,7 @@ namespace FMS_Repository_EF
             return result;
         }
 
-        /*   private bool  IsValidToSave(OwnerInfo obj, Result<OwnerInfo> result)
+        /*   private bool  IsValidToSave(RatingOwner obj, Result<RatingOwner> result)
            {
                if(!ValidationHelper.IsIntValid(obj.UserId))
                {
@@ -190,7 +190,7 @@ namespace FMS_Repository_EF
                    return false;
 
                }
-               if (DbContext.OwnerInfos.Any(u =>
+               if (DbContext.RatingOwners.Any(u =>
                    u.UserId == obj.UserId && u.School != obj.School && u.Collage != obj.Collage &&
                    u.UniversityPost != obj.UniversityPost && u.UniversityUnder != obj.UniversityUnder &&
                    u.Others != obj.Others))
@@ -208,6 +208,7 @@ namespace FMS_Repository_EF
                return true;
 
            }*/
+
 
 
 
