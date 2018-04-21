@@ -7,26 +7,26 @@ using System.Threading.Tasks;
 using FMS_Entities;
 using FMS_Framework.Helper;
 using FMS_Framework.Object;
-using RatingOwner = FMS_Entities.RatingOwner;
+using ProjectSection = FMS_Entities.ProjectSection;
 namespace FMS_Repository_EF
 {
-    class RatingOwnerRepo:BaseRepo
+    class ProjectSectionRepo:BaseRepo
     {
-        public Result<RatingOwner> Save(RatingOwner userinfo)
+        public Result<ProjectSection> Save(ProjectSection userinfo)
         {
-            var result = new Result<RatingOwner>();
+            var result = new Result<ProjectSection>();
             try
             {
-                var objtosave = DbContext.RatingOwners.FirstOrDefault(u => u.UserId == userinfo.UserId);
+                var objtosave = DbContext.ProjectSections.FirstOrDefault(u => u.ProjectSectionId == userinfo.ProjectSectionId);
                 if (objtosave == null)
                 {
-                    objtosave = new RatingOwner();
-                    DbContext.RatingOwners.Add(objtosave);
+                    objtosave = new ProjectSection();
+                    DbContext.ProjectSections.Add(objtosave);
                 }
-                objtosave.CommunicationSkill = userinfo.CommunicationSkill;
-                objtosave.Reliability = userinfo.Reliability;
-                objtosave.OnWord = userinfo.OnWord;
-                objtosave.Behaviour = userinfo.Behaviour;
+                objtosave.PostId = userinfo.PostId;
+                objtosave.SectionName = userinfo.SectionName;
+                objtosave.Percentage = userinfo.Percentage;
+                objtosave.Price = userinfo.Price;
 
 
                 if (!IsValid(objtosave, result))
@@ -43,73 +43,73 @@ namespace FMS_Repository_EF
             return result;
         }
 
-        private bool IsValid(RatingOwner obj, Result<RatingOwner> result)
+        private bool IsValid(ProjectSection obj, Result<ProjectSection> result)
         {
-            if (!ValidationHelper.IsStringValid(obj.CommunicationSkill.ToString()))
+            if (!ValidationHelper.IsStringValid(obj.PostId.ToString()))
             {
                 result.HasError = true;
-                result.Message = "Invalid CommunicationSkill";
+                result.Message = "Invalid PostId";
                 return false;
             }
 
 
-            if (!ValidationHelper.IsStringValid(obj.Reliability.ToString()))
+            if (!ValidationHelper.IsStringValid(obj.SectionName))
             {
                 result.HasError = true;
-                result.Message = "Invalid Reliability";
+                result.Message = "Invalid SectionName";
                 return false;
             }
-            if (!ValidationHelper.IsStringValid(obj.OnWord.ToString()))
+            if (!ValidationHelper.IsStringValid(obj.Percentage.ToString()))
             {
                 result.HasError = true;
-                result.Message = "Invalid OnWord";
+                result.Message = "Invalid Percentage";
                 return false;
             }
-            if (!ValidationHelper.IsStringValid(obj.Behaviour.ToString()))
+            if (!ValidationHelper.IsStringValid(obj.Price.ToString()))
             {
                 result.HasError = true;
-                result.Message = "Invalid Behaviour";
+                result.Message = "Invalid Price";
                 return false;
             }
 
             return true;
         }
 
-        public Result<List<RatingOwner>> GetAll(string key = "")
+        public Result<List<ProjectSection>> GetAll(string key = "")
         {
-            var result = new Result<List<RatingOwner>>() { Data = new List<RatingOwner>() };
+            var result = new Result<List<ProjectSection>>() { Data = new List<ProjectSection>() };
 
             try
             {
-                IQueryable<RatingOwner> query = DbContext.RatingOwners;
+                IQueryable<ProjectSection> query = DbContext.ProjectSections;
 
                 if (ValidationHelper.IsIntValid(key))
                 {
-                    query = query.Where(q => q.UserId == Int32.Parse(key));
+                    query = query.Where(q => q.ProjectSectionId == Int32.Parse(key));
                 }
 
                 if (ValidationHelper.IsStringValid(key))
                 {
-                    query = query.Where(q => q.CommunicationSkill. Equals(Int32.Parse(key)));
-
-                }
-
-                if (ValidationHelper.IsStringValid(key))
-                {
-                    query = query.Where(q => q.Reliability.Equals(Int32.Parse(key)));
+                    query = query.Where(q => q.PostId.Equals(Int32.Parse(key)));
 
                 }
 
                 if (ValidationHelper.IsStringValid(key))
                 {
-                    query = query.Where(q => q.OnWord.Equals(Int32.Parse(key)));
+                    query = query.Where(q => q.SectionName.Contains(key));
+
+                }
+
+                if (ValidationHelper.IsStringValid(key))
+                {
+                    query = query.Where(q => q.Percentage.Equals(Int32.Parse(key)));
 
                 }
 
 
                 if (ValidationHelper.IsStringValid(key))
                 {
-                    query = query.Where(q => q.Behaviour .Equals(Int32.Parse(key)));
+                    query = query.Where(q => q.Price.Equals(Int32.Parse(key)));
 
                 }
                 result.Data = query.ToList();
@@ -124,17 +124,17 @@ namespace FMS_Repository_EF
             return result;
         }
 
-        public Result<RatingOwner> GetByID(int id)
+        public Result<ProjectSection> GetByID(int id)
         {
-            var result = new Result<RatingOwner>();
+            var result = new Result<ProjectSection>();
 
             try
             {
-                var obj = DbContext.RatingOwners.FirstOrDefault(c => c.UserId == id);
+                var obj = DbContext.ProjectSections.FirstOrDefault(c => c.ProjectSectionId == id);
                 if (obj == null)
                 {
                     result.HasError = true;
-                    result.Message = "Invalid UserID";
+                    result.Message = "Invalid ProjectSectionId";
                     return result;
 
 
@@ -157,17 +157,17 @@ namespace FMS_Repository_EF
 
             try
             {
-                var objtodelete = DbContext.RatingOwners.FirstOrDefault(c => c.UserId == id);
+                var objtodelete = DbContext.ProjectSections.FirstOrDefault(c => c.ProjectSectionId == id);
                 if (objtodelete == null)
                 {
                     result.HasError = true;
-                    result.Message = "Invalid UserID";
+                    result.Message = "Invalid ProjectSectionId";
                     return result;
 
 
                 }
 
-                DbContext.RatingOwners.Remove(objtodelete);
+                DbContext.ProjectSections.Remove(objtodelete);
                 DbContext.SaveChanges();
 
             }
@@ -181,7 +181,7 @@ namespace FMS_Repository_EF
             return result;
         }
 
-        /*   private bool  IsValidToSave(RatingOwner obj, Result<RatingOwner> result)
+        /*   private bool  IsValidToSave(ProjectSection obj, Result<ProjectSection> result)
            {
                if(!ValidationHelper.IsIntValid(obj.UserId))
                {
@@ -190,7 +190,7 @@ namespace FMS_Repository_EF
                    return false;
 
                }
-               if (DbContext.RatingOwners.Any(u =>
+               if (DbContext.ProjectSections.Any(u =>
                    u.UserId == obj.UserId && u.School != obj.School && u.Collage != obj.Collage &&
                    u.UniversityPost != obj.UniversityPost && u.UniversityUnder != obj.UniversityUnder &&
                    u.Others != obj.Others))
@@ -208,7 +208,6 @@ namespace FMS_Repository_EF
                return true;
 
            }*/
-
 
 
 

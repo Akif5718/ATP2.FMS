@@ -26,7 +26,7 @@ namespace FMS_Repository_EF
                     objtosave = new UserInfo();
                     DbContext.UserInfos.Add(objtosave);
                 }
-                objtosave.UserId = userinfo.UserId;
+            
                 objtosave.FristName = userinfo.FristName;
                 objtosave.LastName = userinfo.LastName;
                 objtosave.Email = userinfo.Email;

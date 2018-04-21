@@ -52,10 +52,14 @@
     <Compile Include="IRepository.cs" />
     <Compile Include="OwnerInfoRepo.cs" />
     <Compile Include="PaymentRepo.cs" />
+    <Compile Include="PostAProjectRepo.cs" />
+    <Compile Include="ProjectSectionRepo.cs" />
+    <Compile Include="ProjectSkillRepo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RatingOwnerRepo.cs" />
     <Compile Include="RatingWorkerRepo.cs" />
     <Compile Include="Repository.cs" />
+    <Compile Include="SelectedWorkerRepo.cs" />
     <Compile Include="SkillCategoryRepo.cs" />
     <Compile Include="SkillRepo.cs" />
     <Compile Include="UserInfoRepo.cs" />
