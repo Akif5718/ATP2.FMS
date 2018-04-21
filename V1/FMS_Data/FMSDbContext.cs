@@ -30,6 +30,9 @@ namespace FMS_Data
         public DbSet<RatingWorker> RatingWorkers { get; set; }
         public DbSet<Payment> Payments { get; set; }
         public DbSet<SelectedWorker> SelectedWorkers { get; set; }
+        public DbSet<COMMENTSEC> Commentsecs { get; set; }
+        public DbSet<SavedFile> SavedFiles { get; set; }
+        public DbSet<WorkerSkill> WorkerSkills { get; set; }
 
 
     }

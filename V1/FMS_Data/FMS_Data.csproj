@@ -55,6 +55,18 @@
     <Compile Include="Migrations\201804210508066_addtables.Designer.cs">
       <DependentUpon>201804210508066_addtables.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201804211942262_addtablenew.cs" />
+    <Compile Include="Migrations\201804211942262_addtablenew.Designer.cs">
+      <DependentUpon>201804211942262_addtablenew.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201804212042268_addtableworkerskill.cs" />
+    <Compile Include="Migrations\201804212042268_addtableworkerskill.Designer.cs">
+      <DependentUpon>201804212042268_addtableworkerskill.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201804212044023_addtableworkerskills.cs" />
+    <Compile Include="Migrations\201804212044023_addtableworkerskills.Designer.cs">
+      <DependentUpon>201804212044023_addtableworkerskills.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -71,6 +83,15 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201804210508066_addtables.resx">
       <DependentUpon>201804210508066_addtables.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201804211942262_addtablenew.resx">
+      <DependentUpon>201804211942262_addtablenew.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201804212042268_addtableworkerskill.resx">
+      <DependentUpon>201804212042268_addtableworkerskill.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201804212044023_addtableworkerskills.resx">
+      <DependentUpon>201804212044023_addtableworkerskills.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

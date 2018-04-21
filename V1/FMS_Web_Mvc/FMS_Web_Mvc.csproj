@@ -161,6 +161,7 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\ProjectPostController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -229,6 +230,11 @@
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\User\RegisterForm.cshtml" />
     <Content Include="Views\User\LoginForm.cshtml" />
+    <Content Include="Views\User\OwnerForm.cshtml" />
+    <Content Include="Views\User\WorkerForm.cshtml" />
+    <Content Include="Views\User\EducationForm.cshtml" />
+    <Content Include="Views\User\WorkHistoryForm.cshtml" />
+    <Content Include="Views\ProjectPost\CreateProject.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

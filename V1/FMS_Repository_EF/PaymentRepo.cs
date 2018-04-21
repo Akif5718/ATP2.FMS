@@ -171,19 +171,8 @@ namespace FMS_Repository_EF.OthersRepo
             return result;
         }
 
-        private bool IsValidToSave(Payment obj, Result<Payment> result)
-        {
-            if (!ValidationHelper.IsIntValid(obj.Id.ToString()))
-            {
-                result.HasError = true;
-                result.Message = "Invalid UserID";
-                return false;
 
-            }
-            
-            return true;
 
-        }
-
+       
     }
 }

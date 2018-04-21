@@ -46,25 +46,25 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BaseRepo.cs" />
-    <Compile Include="CommunicationRepo.cs" />
-    <Compile Include="EducationalBackgroundRepo.cs" />
-    <Compile Include="IRepository.cs" />
-    <Compile Include="OwnerInfoRepo.cs" />
+    <Compile Include="Others\BaseRepo.cs" />
+    <Compile Include="Project\CommunicationRepo.cs" />
+    <Compile Include="User\EducationalBackgroundRepo.cs" />
+    <Compile Include="Others\IRepository.cs" />
+    <Compile Include="User\OwnerInfoRepo.cs" />
     <Compile Include="PaymentRepo.cs" />
-    <Compile Include="PostAProjectRepo.cs" />
-    <Compile Include="ProjectSectionRepo.cs" />
-    <Compile Include="ProjectSkillRepo.cs" />
+    <Compile Include="Project\PostAProjectRepo.cs" />
+    <Compile Include="Project\ProjectSectionRepo.cs" />
+    <Compile Include="Project\ProjectSkillRepo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="RatingOwnerRepo.cs" />
-    <Compile Include="RatingWorkerRepo.cs" />
-    <Compile Include="Repository.cs" />
-    <Compile Include="SelectedWorkerRepo.cs" />
-    <Compile Include="SkillCategoryRepo.cs" />
-    <Compile Include="SkillRepo.cs" />
-    <Compile Include="UserInfoRepo.cs" />
-    <Compile Include="WorkerInfoRepo.cs" />
-    <Compile Include="WorkHistoryRepo.cs" />
+    <Compile Include="Others\RatingOwnerRepo.cs" />
+    <Compile Include="Others\RatingWorkerRepo.cs" />
+    <Compile Include="Others\Repository.cs" />
+    <Compile Include="Project\SelectedWorkerRepo.cs" />
+    <Compile Include="Skill\SkillCategoryRepo.cs" />
+    <Compile Include="Skill\SkillRepo.cs" />
+    <Compile Include="User\UserInfoRepo.cs" />
+    <Compile Include="User\WorkerInfoRepo.cs" />
+    <Compile Include="User\WorkHistoryRepo.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\FMS_Data\FMS_Data.csproj">

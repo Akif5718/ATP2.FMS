@@ -32,10 +32,10 @@ namespace FMS_Repository
                     query = "update EducationalBackground set School='" + EducationalBackground.School + "',Collage='" + EducationalBackground.Collage + "',UniversityPost='" + EducationalBackground.UniversityPost + "',UniversityUnder='" + EducationalBackground.UniversityUnder + "',Others='" + EducationalBackground.Others + "' where UserId=" + EducationalBackground.UserId;
                 }
 
-                if (!IsValid(EducationalBackground, result))
-                {
-                    return result;
-                }
+                //if (!IsValid(EducationalBackground, result))
+                //{
+                //    return result;
+                //}
 
                 result.HasError = DataAccess.ExecuteQuery(query) <= 0;
 
@@ -128,37 +128,37 @@ namespace FMS_Repository
             }
         }
 
-        private bool IsValid(EducationalBackground obj, Result<EducationalBackground> result)
-        {
-            if (!ValidationHelper.IsStringValid(obj.School))
-            {
-                result.HasError = true;
-                result.Message = "Invalid School Name";
-                return false;
-            }
-            if (!ValidationHelper.IsStringValid(obj.Collage))
-            {
-                result.HasError = true;
-                result.Message = "Invalid Collage Name";
-                return false;
+        //private bool IsValid(EducationalBackground obj, Result<EducationalBackground> result)
+        //{
+        //    if (!ValidationHelper.IsStringValid(obj.School))
+        //    {
+        //        result.HasError = true;
+        //        result.Message = "Invalid School Name";
+        //        return false;
+        //    }
+        //    if (!ValidationHelper.IsStringValid(obj.Collage))
+        //    {
+        //        result.HasError = true;
+        //        result.Message = "Invalid Collage Name";
+        //        return false;
 
-            }
-            if (!ValidationHelper.IsStringValid(obj.UniversityPost))
-            {
-                result.HasError = true;
-                result.Message = "Invalid University Name";
-                return false;
-            }
-            if (!ValidationHelper.IsStringValid(obj.UniversityUnder))
-            {
-                result.HasError = true;
-                result.Message = "Invalid University Name";
-                return false;
-            }
+        //    }
+        //    if (!ValidationHelper.IsStringValid(obj.UniversityPost))
+        //    {
+        //        result.HasError = true;
+        //        result.Message = "Invalid University Name";
+        //        return false;
+        //    }
+        //    if (!ValidationHelper.IsStringValid(obj.UniversityUnder))
+        //    {
+        //        result.HasError = true;
+        //        result.Message = "Invalid University Name";
+        //        return false;
+        //    }
 
 
-            return true;
-        }
+        //    return true;
+        //}
 
         private EducationalBackground ConvertToEntity(DataRow row)
         {

@@ -14,13 +14,13 @@ namespace FMS_Entities
         public int UserId{ get; set; }
         [ForeignKey("UserId")]
         public UserInfo UserInfo;
-        [Required]
+      
         public string School{ get; set; }
-        [Required]
+      
         public string Collage{ get; set; }
-        [Required]
+       
         public string UniversityPost { get; set; }
-        [Required]
+     
         public string UniversityUnder { get; set; }
        
         public string Others { get; set; }

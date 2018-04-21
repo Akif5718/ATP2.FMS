@@ -40,7 +40,7 @@ namespace FMS_Web_Mvc.Controllers
                 Console.WriteLine(ex.Message);
             }
             if(userInfo.UserType.Equals("Owner"))
-            return RedirectToAction("RegisterForm");
+                return RedirectToAction("OwnerForm");
 
             else
             {
@@ -87,5 +87,111 @@ namespace FMS_Web_Mvc.Controllers
             }
         }
 
+        public ActionResult OwnerForm()
+        {
+
+            return View();
+
+
+        }
+        [HttpPost]
+        public ActionResult OwnerForm(OwnerInfo ownerInfo)
+        {
+
+            try
+            {
+                var result = ownerDao.Save(ownerInfo);
+
+                if (result.HasError)
+                {
+                    ViewBag.Message = result.Message;
+                    return View("RegisterForm", ownerInfo);
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+            return RedirectToAction("OwnerForm");
+
+        }
+
+        public ActionResult WorkerForm()
+        {
+           return View();
+        }
+        [HttpPost]
+        public ActionResult WorkerForm(WorkerInfo workerInfo)
+        {
+
+            try
+            {
+                var result = workerDao.Save(workerInfo);
+
+                if (result.HasError)
+                {
+                    ViewBag.Message = result.Message;
+                    return View("RegisterForm", workerInfo);
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+            return RedirectToAction("OwnerForm");
+
+        }
+
+        public ActionResult EducationForm()
+        {
+            return View();
+        }
+        [HttpPost]
+        public ActionResult EducationForm(EducationalBackground educationalBackground)
+        {
+
+            try
+            {
+                var result = eduDao.Save(educationalBackground);
+
+                if (result.HasError)
+                {
+                    ViewBag.Message = result.Message;
+                    return View("RegisterForm", educationalBackground);
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+            return RedirectToAction("OwnerForm");
+
+        }
+
+        public ActionResult WorkHistoryForm()
+        {
+            return View();
+        }
+        [HttpPost]
+        public ActionResult WorkHistoryForm(WorkHistory workHistory)
+        {
+
+            try
+            {
+                var result = workDao.Save(workHistory);
+
+                if (result.HasError)
+                {
+                    ViewBag.Message = result.Message;
+                    return View("RegisterForm", workHistory);
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+            return RedirectToAction("OwnerForm");
+
+        }
     }
 }

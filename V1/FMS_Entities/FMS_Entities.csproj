@@ -58,6 +58,7 @@
     <Compile Include="Project\ResponseToAJob.cs" />
     <Compile Include="Others\Rewards.cs" />
     <Compile Include="User\UserInfo.cs" />
+    <Compile Include="User\WorkerSkill.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Properties\" />
