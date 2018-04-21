@@ -141,6 +141,30 @@ namespace FMS_RepositoryOracle
                 }
                 return result;
             }
+            public Result<UserInfo> GetByEmail(string Email)
+            {
+                var result = new Result<UserInfo>();
+                try
+                {
+                    string query = "select * from UserInfo where Email='" + Email+"'";
+                    var dt = DataAccess.GetDataTable(query);
+
+                    if (dt == null || dt.Rows.Count == 0)
+                    {
+                        result.HasError = true;
+                        result.Message = "Invalid UserId";
+                        return result;
+                    }
+
+                    result.Data = ConvertToEntity(dt.Rows[0]);
+                }
+                catch (Exception ex)
+                {
+                    result.HasError = true;
+                    result.Message = ex.Message;
+                }
+                return result;
+            }
 
             public bool Delete(int UserId)
             {
@@ -192,25 +216,115 @@ namespace FMS_RepositoryOracle
                 {
                     UserInfo u = new UserInfo();
                     u.UserId = Int32.Parse(row["UserId"].ToString());
-                    u.FristName = row["FristName"].ToString();
+                    u.FristName = row["FirstName"].ToString();
                     u.LastName = row["LastName"].ToString();
                     u.Email = row["Email"].ToString();
                    // u.Email = row["Email"].ToString();
                     u.Password = row["Password"].ToString();
-                    u.DateofBrith = Convert.ToDateTime(row["DateofBrith"]);
+                    u.DateofBrith = Convert.ToDateTime(row["DateofBirth"]);
                     u.JoinDate = Convert.ToDateTime(row["JoinDate"]);
                     u.City = row["City"].ToString();
                     u.State = row["State"].ToString();
                     u.Country = row["Country"].ToString();
+                    u.UserType = row["UserType"].ToString();
                     u.Balance = Int32.Parse(row["Balance"].ToString());
                     return u;
                 }
-                catch (Exception)
+                catch (Exception ex)
                 {
                     return null;
                 }
 
             }
+
+            //public Result<List<UserInfo>> GetAll(string key = "")
+            //{
+            //    var result = new Result<List<UserInfo>>() { Data = new List<UserInfo>() };
+
+            //    try
+            //    {
+            //        IQueryable<UserInfo> query = DbContext.UserInfos;
+
+            //        if (ValidationHelper.IsIntValid(key))
+            //        {
+            //            query = query.Where(q => q.UserId == Int32.Parse(key));
+            //        }
+
+            //        if (ValidationHelper.IsStringValid(key))
+            //        {
+            //            query = query.Where(q => q.FristName.Contains(key));
+
+            //        }
+
+            //        if (ValidationHelper.IsStringValid(key))
+            //        {
+            //            query = query.Where(q => q.LastName.Contains(key));
+
+            //        }
+
+            //        if (ValidationHelper.IsStringValid(key))
+            //        {
+            //            query = query.Where(q => q.Email.Contains(key));
+
+            //        }
+
+
+            //        if (ValidationHelper.IsStringValid(key))
+            //        {
+            //            query = query.Where(q => q.Password.Contains(key));
+
+            //        }
+            //        if (ValidationHelper.IsStringValid(key))
+            //        {
+            //            query = query.Where(q => q.DateofBrith.ToString().Contains(key));
+
+            //        }
+            //        if (ValidationHelper.IsStringValid(key))
+            //        {
+            //            query = query.Where(q => q.JoinDate.ToString().Contains(key));
+
+            //        }
+            //        if (ValidationHelper.IsStringValid(key))
+            //        {
+            //            query = query.Where(q => q.ProPic.Contains(key));
+
+            //        }
+            //        if (ValidationHelper.IsStringValid(key))
+            //        {
+            //            query = query.Where(q => q.City.Contains(key));
+
+            //        }
+            //        if (ValidationHelper.IsStringValid(key))
+            //        {
+            //            query = query.Where(q => q.State.Contains(key));
+
+            //        }
+            //        if (ValidationHelper.IsStringValid(key))
+            //        {
+            //            query = query.Where(q => q.Country.Contains(key));
+
+            //        }
+            //        if (ValidationHelper.IsStringValid(key))
+            //        {
+            //            query = query.Where(q => q.UserType.Contains(key));
+
+            //        }
+            //        if (ValidationHelper.IsStringValid(key))
+            //        {
+            //            query = query.Where(q => q.Balance.Equals(Int32.Parse(key)));
+
+            //        }
+            //        result.Data = query.ToList();
+            //    }
+            //    catch (Exception e)
+            //    {
+            //        result.HasError = true;
+            //        result.Message = e.Message;
+
+
+            //    }
+            //    return result;
+            //}
         }
  }
 

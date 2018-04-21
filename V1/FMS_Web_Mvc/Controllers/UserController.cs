@@ -39,7 +39,53 @@ namespace FMS_Web_Mvc.Controllers
             {
                 Console.WriteLine(ex.Message);
             }
+            if(userInfo.UserType.Equals("Owner"))
             return RedirectToAction("RegisterForm");
+
+            else
+            {
+                return RedirectToAction("RegisterForm");
+
+            }
+
+
         }
+
+        public ActionResult LoginForm()
+        {
+
+            return View();
+
+
+        }
+        [HttpPost]
+        public ActionResult LoginForm(UserInfo userInfo)
+        {
+
+            var obj = userDao.GetByEmail(userInfo.Email);
+            try
+            {
+                var result = userDao.Login(userInfo.Email,userInfo.Password);
+               
+                if (result.HasError)
+                {
+                    ViewBag.Message = result.Message;
+                    return View("RegisterForm", userInfo);
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+            if (obj.Data.UserType.Equals("Owner"))
+                return RedirectToAction("LoginForm");
+
+            else
+            {
+                return RedirectToAction("LoginForm");
+
+            }
+        }
+
     }
 }
