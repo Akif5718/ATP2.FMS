@@ -147,7 +147,7 @@ namespace FMS_Repository_EF.OthersRepo
 
             try
             {
-                var objtodelete = DbContext.Payments.FirstOrDefault(c => c.UserId == id);
+                var objtodelete = DbContext.Payments.FirstOrDefault(c => c.Id == id);
                 if (objtodelete == null)
                 {
                     result.HasError = true;
@@ -173,23 +173,14 @@ namespace FMS_Repository_EF.OthersRepo
 
         private bool IsValidToSave(Payment obj, Result<Payment> result)
         {
-            if (!ValidationHelper.IsIntValid(obj.UserId.ToString()))
+            if (!ValidationHelper.IsIntValid(obj.Id.ToString()))
             {
                 result.HasError = true;
                 result.Message = "Invalid UserID";
                 return false;
 
             }
-            if (DbContext.Payments.Any(u => u.Email == obj.Email))
-            {
-
-                result.HasError = true;
-                result.Message = "Email Exists";
-                return false;
-
-
-
-            }
+            
             return true;
 
         }
