@@ -19,17 +19,17 @@ namespace FMS_Repository
             var result = new Result<ProjectSkills>();
             try
             {
-                string query = "select * from ProjectSkills where PostID=" + ProjectSkills.PostID;
+                string query = "select * from ProjectSkill where PostID=" + ProjectSkills.PostID;
                 var dt = DataAccess.GetDataTable(query);
 
                 if (dt == null || dt.Rows.Count == 0)
                 {
-                    // ProjectSkills.UserId = GetID();
-                    query = "insert into ProjectSkills values(" + ProjectSkills.PostID + "," + ProjectSkills.SkillID + ")";
+                    ProjectSkills.PostID = GetID();
+                    query = "insert into ProjectSkill values(" + ProjectSkills.PostID + "," + ProjectSkills.SkillID + ")";
                 }
                 else
                 {
-                    query = "update ProjectSkills set SkillID=" + ProjectSkills.SkillID + " where PostID=" +
+                    query = "update ProjectSkill set SkillID=" + ProjectSkills.SkillID + " where PostID=" +
                       ProjectSkills.PostID;
                 }
 
@@ -52,23 +52,24 @@ namespace FMS_Repository
             return result;
         }
 
-        //private int GetID()
-        //{
-        //    string query = "select * from ProjectSkills order by PostID desc";
-        //    var dt = DataAccess.GetDataTable(query);
-        //    int id = 1;
+        private int GetID()
+        {
+            string query = "select * from PostAProject order by PostID desc";
+            var dt = DataAccess.GetDataTable(query);
+            int id = 1;
 
-        //    if (dt != null && dt.Rows.Count != 0)
-        //        id = Int32.Parse(dt.Rows[0]["ID"].ToString()) + 1;
+            if (dt != null && dt.Rows.Count != 0)
+                id = Int32.Parse(dt.Rows[0]["PostID"].ToString());
 
-        //    return id;
-        //}
-        public List<ProjectSkills> GetAll()
+            return id;
+        }
+
+        public List<ProjectSkills> GetAll(int id)
         {
             var result = new List<ProjectSkills>();
             try
             {
-                string query = "select * from ProjectSkills";
+                string query = "select * from ProjectSkill where PostID=" + id;
                 var dt = DataAccess.GetDataTable(query);
 
                 if (dt != null && dt.Rows.Count != 0)
@@ -87,37 +88,37 @@ namespace FMS_Repository
             return result;
         }
 
-        public Result<ProjectSkills> GetByID(int id)
-        {
-            var result = new Result<ProjectSkills>();
-            try
-            {
-                string query = "select * from ProjectSkills where PostID=" + id;
-                var dt = DataAccess.GetDataTable(query);
+        //public Result<ProjectSkills> GetByID(int id)
+        //{
+        //    var result = new Result<ProjectSkills>();
+        //    try
+        //    {
+        //        string query = "select * from ProjectSkill where PostID=" + id;
+        //        var dt = DataAccess.GetDataTable(query);
 
-                if (dt == null || dt.Rows.Count == 0)
-                {
-                    result.HasError = true;
-                    result.Message = "Invalid ID";
-                    return result;
-                }
+        //        if (dt == null || dt.Rows.Count == 0)
+        //        {
+        //            result.HasError = true;
+        //            result.Message = "Invalid ID";
+        //            return result;
+        //        }
 
-                result.Data = ConvertToEntity(dt.Rows[0]);
-            }
-            catch (Exception ex)
-            {
-                result.HasError = true;
-                result.Message = ex.Message;
-            }
-            return result;
-        }
+        //        result.Data = ConvertToEntity(dt.Rows[0]);
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        result.HasError = true;
+        //        result.Message = ex.Message;
+        //    }
+        //    return result;
+        //}
 
         public bool Delete(int id)
         {
             var result = new Result<ProjectSkills>();
             try
             {
-                string query = "delete from ProjectSkills where PostID=" + id;
+                string query = "delete from ProjectSkill where PostID=" + id;
                 return DataAccess.ExecuteQuery(query) > 0;
             }
             catch (Exception ex)

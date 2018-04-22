@@ -25,11 +25,13 @@ namespace FMS_Repository
                 if (dt == null || dt.Rows.Count == 0)
                 {
                      PostAProject.PostId = GetID();
-                    query = "insert into PostAProject values(" + PostAProject.PostId + "," + PostAProject.WUserId + ",'" + PostAProject.ProjectName + "','" + PostAProject.StartTime + "','" + PostAProject.EndTime + "','" + PostAProject.Description + "','" + PostAProject.ProjectSection + "'," + PostAProject.Price + "," + PostAProject.Members + ")";
+                     var d = PostAProject.StartTime.ToString(string.Format("dd/MMM/yyyy"));
+                     var b = PostAProject.EndTime.ToString(string.Format("dd/MMM/yyyy"));
+                     query = "insert into PostAProject values(" + PostAProject.PostId + "," +1 + ",'" + PostAProject.ProjectName + "'," + PostAProject.Price + ",'" + d + "','" + b + "','" + PostAProject.Description + "'," + PostAProject.Members + ")";
                 }
                 else
                 {
-                    query = "update PostAProject set ProjectName='" + PostAProject.ProjectName + "',StartTime='" + PostAProject.StartTime + "',EndTime='" + PostAProject.EndTime + "',Description='" + PostAProject.Description + "',ProjectSection='" + PostAProject.ProjectSection + "',Price=" + PostAProject.Price + ",Members=" + PostAProject.Members + " where PostID=" + PostAProject.PostId;
+                    query = "update PostAProject set ProjectName='" + PostAProject.ProjectName + "',StartTime='" + PostAProject.StartTime + "',EndTime='" + PostAProject.EndTime + "',Description='" + PostAProject.Description + "',Price=" + PostAProject.Price + ",Members=" + PostAProject.Members + " where PostID=" + PostAProject.PostId;
                 }
 
                 if (!IsValid(PostAProject, result))
@@ -61,10 +63,11 @@ namespace FMS_Repository
            int id = 1;
 
            if (dt != null && dt.Rows.Count != 0)
-               id = Int32.Parse(dt.Rows[0]["ID"].ToString()) + 1;
+               id = Int32.Parse(dt.Rows[0]["PostID"].ToString()) + 1;
 
            return id;
        }
+
        public List<PostAProject> GetAll()
         {
             var result = new List<PostAProject>();
@@ -88,6 +91,50 @@ namespace FMS_Repository
             }
             return result;
         }
+
+       public Result<List<PostAProject>> GetAll(string key = "")
+       {
+           var result = new Result<List<PostAProject>>() { Data = new List<PostAProject>() };
+           try
+           {
+               string query = "select * from PostAProject";
+               if (ValidationHelper.IsStringValid(key))
+               {
+                   query += "where ProjectName like '%" + key + "%'";
+               }
+               if (ValidationHelper.IsStringValid(key))
+               {
+                   query += "where StartTime like '%" + key + "%'";
+               }
+               if (ValidationHelper.IsStringValid(key))
+               {
+                   query += "where EndTime like '%" + key + "%'";
+               }
+               
+               if (ValidationHelper.IsIntValid(key))
+               {
+                   int id = Int32.Parse(key);
+                   query += "or Price=" + id;
+               }
+               if (ValidationHelper.IsIntValid(key))
+               {
+                   int id = Int32.Parse(key);
+                   query += "or PostId=" + id;
+               }
+               var dt = DataAccess.GetDataTable(query);
+               for (int i = 0; i < dt.Rows.Count; i++)
+               {
+                   result.Data.Add(ConvertToEntity(dt.Rows[i]));
+               }
+
+           }
+           catch (Exception e)
+           {
+               result.HasError = true;
+               result.Message = e.Message;
+           }
+           return result;
+       } 
 
        public Result<PostAProject> GetByID(int id)
         {
@@ -151,7 +198,7 @@ namespace FMS_Repository
                 u.WUserId = Int32.Parse(row["WUserID"].ToString());
                 u.Price = Int32.Parse(row["Price"].ToString());
                 u.Members = Int32.Parse(row["Members"].ToString());
-                u.ProjectSection = Int32.Parse(row["ProjectSection"].ToString());
+             
                 u.ProjectName = row["ProjectName"].ToString();
                
                 u.Description = row["Description"].ToString();

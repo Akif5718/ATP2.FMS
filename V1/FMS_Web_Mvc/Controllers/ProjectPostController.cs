@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using FMS_Entities;
+using FMS_Model;
 using FMS_Web_Framework.Base;
 
 namespace FMS_Web_Mvc.Controllers
@@ -17,20 +18,46 @@ namespace FMS_Web_Mvc.Controllers
         }
 
         [HttpPost]
-        public ActionResult CreateProject(PostAProject postAProject)
+        public ActionResult CreateProject(PostProjectModel PostProjectModel)
         {
             if (!ModelState.IsValid)
             {
-                return View("CreateProject", postAProject);
+                return View("CreateProject", PostProjectModel);
             }
 
             try
             {
+                var postAProject=new PostAProject();
+                postAProject.ProjectName = PostProjectModel.ProjectName;
+                postAProject.Description = PostProjectModel.Description;
+                postAProject.Price = PostProjectModel.Price;
+                postAProject.StartTime = PostProjectModel.StartTime;
+                postAProject.EndTime = PostProjectModel.EndTime;
+                postAProject.Members = PostProjectModel.Members;
                 var result = postProjectDao.Save(postAProject);
+
+                foreach (var x in PostProjectModel.SectionName)
+                {
+                    var projectsection = new ProjectSection();
+                    projectsection.SectionName = x;
+                    var result1 = projectSectionDao.Save(projectsection);
+                }
+
+                foreach (var skillid in PostProjectModel.SkillId)
+                {
+                    var projectskill = new ProjectSkills();
+                    projectskill.SkillID = skillid;
+                    var result2 = projectSkillDao.Save(projectskill);
+                }
+              
+
+              
+                
+                
                 if (result.HasError)
                 {
                     ViewBag.Message = result.Message;
-                    return View("CreateProject", postAProject);
+                    return View("CreateProject", PostProjectModel);
                 }
             }
             catch (Exception ex)
@@ -38,6 +65,35 @@ namespace FMS_Web_Mvc.Controllers
                 Console.WriteLine(ex.Message);
             }
             return RedirectToAction("CreateProject");
+        }
+
+        public ActionResult ProjectList()
+        {
+            var result = postProjectDao.GetAll();
+            return View(result);
+        }
+
+        public ActionResult ProjectDetails(int id)
+        {
+            var result = postProjectDao.GetByID(id);
+            PostProjectModel postProjectModel=new PostProjectModel();
+
+            postProjectModel.ProjectName = result.Data.ProjectName;
+            postProjectModel.Description = result.Data.Description;
+            postProjectModel.Price = result.Data.Price;
+            postProjectModel.StartTime = result.Data.StartTime;
+            postProjectModel.EndTime = result.Data.EndTime;
+            postProjectModel.WUserId = result.Data.WUserId;
+            postProjectModel.PostId = result.Data.PostId;
+
+            var result2 = projectSkillDao.GetAll(result.Data.PostId);
+            foreach (var skillid in result2)
+            {
+                  postProjectModel.SkillId.Add(skillid.SkillID);
+                //fg
+            }
+
+            return View(postProjectModel);
         }
     }
 }

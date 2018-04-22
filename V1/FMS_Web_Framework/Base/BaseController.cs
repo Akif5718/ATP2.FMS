@@ -85,5 +85,29 @@ namespace FMS_Web_Framework.Base
             }
 
         }
+
+        private static ProjectSkillDAO _projectSkillDao;
+        public static ProjectSkillDAO projectSkillDao
+        {
+            get
+            {
+                if (_projectSkillDao == null)
+                    _projectSkillDao = new ProjectSkillDAO();
+                return _projectSkillDao;
+            }
+
+        }
+
+        private static ProjectSectionDAO _projectSectionDao;
+        public static ProjectSectionDAO projectSectionDao
+        {
+            get
+            {
+                if (_projectSectionDao == null)
+                    _projectSectionDao = new ProjectSectionDAO();
+                return _projectSectionDao;
+            }
+
+        }
     }
 }

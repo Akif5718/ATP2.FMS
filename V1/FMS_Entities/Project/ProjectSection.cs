@@ -23,10 +23,9 @@ namespace FMS_Entities
        [Required]
        public string SectionName { get; set; }
 
-       [Required]
+     
        public int Percentage { get; set; }
 
-       [NotMapped]
        public double Price { get; set; }
     }
 }

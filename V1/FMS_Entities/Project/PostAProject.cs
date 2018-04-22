@@ -32,8 +32,7 @@ namespace FMS_Entities
     public DateTime EndTime { get; set; }
     [Required]
     public string Description { get; set; }
-    [Required]
-    public int  ProjectSection{ get; set; }
+    
     [Required]
     public int Members { get; set; }
 

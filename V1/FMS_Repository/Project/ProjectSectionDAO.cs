@@ -12,20 +12,21 @@ using ProjectSection = FMS_Entities.ProjectSection;
 
 namespace FMS_Repository
 {
-    class ProjectSectionDAO
+   public class ProjectSectionDAO
     {
         public Result<ProjectSection> Save(ProjectSection ProjectSection)
         {
             var result = new Result<ProjectSection>();
             try
             {
-                string query = "select * from ProjectSection where PostID=" + ProjectSection.PostId;
+                string query = "select * from ProjectSection where ProjectSectionId=" + ProjectSection.ProjectSectionId;
                 var dt = DataAccess.GetDataTable(query);
 
                 if (dt == null || dt.Rows.Count == 0)
                 {
-                    ProjectSection.PostId = GetID();
-                    query = "insert into ProjectSection values(" + ProjectSection.PostId + ",'" + ProjectSection.SectionName + "','" + ProjectSection.Percentage + "'," + ProjectSection.Price + ")";
+                    ProjectSection.ProjectSectionId = GetID();
+                    ProjectSection.PostId = GetID2();
+                    query = "insert into ProjectSection values("+ ProjectSection.ProjectSectionId + "," +ProjectSection.PostId + ",'" + ProjectSection.SectionName + "','" + ProjectSection.Percentage + "'," + ProjectSection.Price + ")";
                 }
                 else
                 {
@@ -56,12 +57,24 @@ namespace FMS_Repository
 
         private int GetID()
         {
-            string query = "select * from ProjectSection order by PostID desc";
+            string query = "select * from ProjectSection order by ProjectSectionId desc";
             var dt = DataAccess.GetDataTable(query);
             int id = 1;
 
             if (dt != null && dt.Rows.Count != 0)
-                id = Int32.Parse(dt.Rows[0]["ID"].ToString()) + 1;
+                id = Int32.Parse(dt.Rows[0]["ProjectSectionId"].ToString()) + 1;
+
+            return id;
+        }
+
+        private int GetID2()
+        {
+            string query = "select * from PostAProject order by PostID desc";
+            var dt = DataAccess.GetDataTable(query);
+            int id = 1;
+
+            if (dt != null && dt.Rows.Count != 0)
+                id = Int32.Parse(dt.Rows[0]["PostID"].ToString());
 
             return id;
         }

@@ -141,6 +141,7 @@ namespace FMS_RepositoryOracle
                 }
                 return result;
             }
+
             public Result<UserInfo> GetByEmail(string Email)
             {
                 var result = new Result<UserInfo>();
@@ -165,6 +166,7 @@ namespace FMS_RepositoryOracle
                 }
                 return result;
             }
+
             public Result<List<UserInfo>> GetAll(string key = "")
             {
                 var result = new Result<List<UserInfo>>() { Data = new List<UserInfo>() };
@@ -214,6 +216,7 @@ namespace FMS_RepositoryOracle
                 }
                 return result;
             } 
+
             public bool Delete(int UserId)
             {
                 var result = new Result<UserInfo>();

@@ -30,7 +30,6 @@ namespace FMS_Repository_EF
                 objtosave.StartTime = PostAProject.StartTime;
                 objtosave.EndTime = PostAProject.EndTime;
                 objtosave.Description = PostAProject.Description;
-                objtosave.ProjectSection = PostAProject.ProjectSection;
                 objtosave.Members = PostAProject.Members;
                 
 
@@ -87,12 +86,8 @@ namespace FMS_Repository_EF
                 result.HasError = true;
                 result.Message = "Invalid Description";
                 return false;
-            } if (!ValidationHelper.IsStringValid(obj.ProjectSection.ToString()))
-            {
-                result.HasError = true;
-                result.Message = "Invalid ProjectSection";
-                return false;
-            } if (!ValidationHelper.IsStringValid(obj.Members.ToString()))
+            }
+            if (!ValidationHelper.IsStringValid(obj.Members.ToString()))
             {
                 result.HasError = true;
                 result.Message = "Invalid Members";
@@ -150,11 +145,7 @@ namespace FMS_Repository_EF
                     query = query.Where(q => q.Description.ToString().Contains(key));
 
                 }
-                if (ValidationHelper.IsStringValid(key))
-                {
-                    query = query.Where(q => q.ProjectSection.Equals(Int32.Parse(key)));
-
-                }
+               
                 if (ValidationHelper.IsStringValid(key))
                 {
                     query = query.Where(q => q.Members.Equals(Int32.Parse(key)));

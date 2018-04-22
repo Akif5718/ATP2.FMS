@@ -235,6 +235,8 @@
     <Content Include="Views\User\EducationForm.cshtml" />
     <Content Include="Views\User\WorkHistoryForm.cshtml" />
     <Content Include="Views\ProjectPost\CreateProject.cshtml" />
+    <Content Include="Views\ProjectPost\ProjectList.cshtml" />
+    <Content Include="Views\ProjectPost\ProjectDetails.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
