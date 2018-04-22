@@ -164,6 +164,7 @@
     <Compile Include="Controllers\OwnerController.cs" />
     <Compile Include="Controllers\ProjectPostController.cs" />
     <Compile Include="Controllers\UserController.cs" />
+    <Compile Include="Controllers\WorkerController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -237,12 +238,15 @@
     <Content Include="Views\User\EducationForm.cshtml" />
     <Content Include="Views\User\WorkHistoryForm.cshtml" />
     <Content Include="Views\ProjectPost\CreateProject.cshtml" />
-    <Content Include="Views\ProjectPost\ProjectList.cshtml" />
+    <Content Include="Views\Owner\ProjectList.cshtml" />
     <Content Include="Views\ProjectPost\ProjectDetails.cshtml" />
     <Content Include="Views\Owner\OwnerProfile.cshtml" />
     <Content Include="Views\ProjectPost\RequestedMember.cshtml" />
-    <Content Include="Views\Shared\AfterLogin.cshtml" />
+    <Content Include="Views\Shared\AfterLoginOwner.cshtml" />
     <Content Include="Views\Owner\_ViewStart.cshtml" />
+    <Content Include="Views\Shared\AfterLoginWorker.cshtml" />
+    <Content Include="Views\Worker\WorkerProfile.cshtml" />
+    <Content Include="Views\Worker\JobHome.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

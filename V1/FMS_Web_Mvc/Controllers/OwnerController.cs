@@ -36,27 +36,11 @@ namespace FMS_Web_Mvc.Controllers
 
 
         }
-        [HttpPost]
-        public ActionResult OwnerProfile(OwnerInfo ownerInfo)
-        {
-
-            try
-            {
-                var result = ownerDao.Save(ownerInfo);
-
-                if (result.HasError)
-                {
-                    ViewBag.Message = result.Message;
-                    return View("OwnerForm", ownerInfo);
-                }
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine(ex.Message);
-            }
-            return RedirectToAction("OwnerForm");
-
-        }
         
+        public ActionResult ProjectList()
+        {
+            var result = postProjectDao.GetAll();
+            return View(result);
+        }
     }
 }

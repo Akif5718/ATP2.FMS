@@ -68,11 +68,7 @@ namespace FMS_Web_Mvc.Controllers
             return RedirectToAction("CreateProject");
         }
 
-        public ActionResult ProjectList()
-        {
-            var result = postProjectDao.GetAll();
-            return View(result);
-        }
+       
 
         public ActionResult ProjectDetails(int? id)
         {
