@@ -48,6 +48,7 @@
   <ItemGroup>
     <Compile Include="Others\BaseRepo.cs" />
     <Compile Include="Project\CommunicationRepo.cs" />
+    <Compile Include="Project\ResponseToaJobRepo.cs" />
     <Compile Include="User\EducationalBackgroundRepo.cs" />
     <Compile Include="Others\IRepository.cs" />
     <Compile Include="User\OwnerInfoRepo.cs" />
