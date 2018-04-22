@@ -232,7 +232,7 @@
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\User\RegisterForm.cshtml" />
     <Content Include="Views\User\LoginForm.cshtml" />
-    <Content Include="Views\Owner\OwnerForm.cshtml" />
+    <Content Include="Views\User\OwnerForm.cshtml" />
     <Content Include="Views\User\WorkerForm.cshtml" />
     <Content Include="Views\User\EducationForm.cshtml" />
     <Content Include="Views\User\WorkHistoryForm.cshtml" />
@@ -241,6 +241,8 @@
     <Content Include="Views\ProjectPost\ProjectDetails.cshtml" />
     <Content Include="Views\Owner\OwnerProfile.cshtml" />
     <Content Include="Views\ProjectPost\RequestedMember.cshtml" />
+    <Content Include="Views\Shared\AfterLogin.cshtml" />
+    <Content Include="Views\Owner\_ViewStart.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

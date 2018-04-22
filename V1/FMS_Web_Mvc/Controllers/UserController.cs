@@ -15,6 +15,34 @@ namespace FMS_Web_Mvc.Controllers
     public class UserController : BaseController
     {
         // GET: User
+         public ActionResult OwnerForm()
+        {
+
+            return View();
+
+
+        }
+        [HttpPost]
+        public ActionResult OwnerForm(OwnerInfo ownerInfo)
+        {
+
+            try
+            {
+                var result = ownerDao.Save(ownerInfo);
+
+                if (result.HasError)
+                {
+                    ViewBag.Message = result.Message;
+                    return View("OwnerForm", ownerInfo);
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+            return RedirectToAction("OwnerForm");
+
+        }
         public ActionResult RegisterForm()
         {
 
@@ -42,7 +70,7 @@ namespace FMS_Web_Mvc.Controllers
                 Console.WriteLine(ex.Message);
             }
             if(userInfo.UserType.Equals("Owner"))
-                return RedirectToAction("OwnerForm");
+                return RedirectToAction("OwnerForm", "User");
 
             else
             {
@@ -116,7 +144,7 @@ namespace FMS_Web_Mvc.Controllers
             {
                 Console.WriteLine(ex.Message);
             }
-            return RedirectToAction("OwnerForm");
+            return RedirectToAction("OwnerForm", "User");
 
         }
 
@@ -142,7 +170,7 @@ namespace FMS_Web_Mvc.Controllers
             {
                 Console.WriteLine(ex.Message);
             }
-            return RedirectToAction("OwnerForm");
+            return RedirectToAction("OwnerForm", "User");
 
         }
 
@@ -168,53 +196,10 @@ namespace FMS_Web_Mvc.Controllers
             {
                 Console.WriteLine(ex.Message);
             }
-            return RedirectToAction("OwnerForm");
+            return RedirectToAction("OwnerForm", "User");
 
         }
 
-        public ActionResult OwnerProfile()
-        {
-            var ownerInfo = userDao.GetById(1);
-            var ownerCMP = ownerDao.GetByID(1);
-            Owner ownerVM = new Owner();
-            ownerVM.Balance = ownerInfo.Data.Balance;
-            ownerVM.City = ownerInfo.Data.City;
-            ownerVM.CompanyAddress = ownerCMP.Data.CompanyAddress;
-            ownerVM.CompanyName = ownerCMP.Data.CompanyName;
-            ownerVM.Country = ownerInfo.Data.Country;
-            ownerVM.DateofBrith = ownerInfo.Data.DateofBrith;
-            ownerVM.Email = ownerInfo.Data.Email;
-            ownerVM.FristName = ownerInfo.Data.FristName;
-            ownerVM.LastName = ownerInfo.Data.LastName;
-            ownerVM.JoinDate = ownerInfo.Data.JoinDate;
-            ownerVM.ProPic = ownerInfo.Data.ProPic;
-            ownerVM.State = ownerInfo.Data.State;
-            ownerVM.UserId = ownerInfo.Data.UserId;
-            ownerVM.UserType = ownerInfo.Data.UserType;
-            return View(ownerVM);
-
-
-        }
-        [HttpPost]
-        public ActionResult OwnerProfile(OwnerInfo ownerInfo)
-        {
-
-            try
-            {
-                var result = ownerDao.Save(ownerInfo);
-
-                if (result.HasError)
-                {
-                    ViewBag.Message = result.Message;
-                    return View("RegisterForm", ownerInfo);
-                }
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine(ex.Message);
-            }
-            return RedirectToAction("OwnerForm");
-
-        }
+       
     }
 }

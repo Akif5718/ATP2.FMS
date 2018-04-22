@@ -11,34 +11,7 @@ namespace FMS_Web_Mvc.Controllers
 {
     public class OwnerController : BaseController
     {
-        public ActionResult OwnerForm()
-        {
-
-            return View();
-
-
-        }
-        [HttpPost]
-        public ActionResult OwnerForm(OwnerInfo ownerInfo)
-        {
-
-            try
-            {
-                var result = ownerDao.Save(ownerInfo);
-
-                if (result.HasError)
-                {
-                    ViewBag.Message = result.Message;
-                    return View("OwnerForm", ownerInfo);
-                }
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine(ex.Message);
-            }
-            return RedirectToAction("OwnerForm");
-
-        }
+       
 
         public ActionResult OwnerProfile()
         {
@@ -84,5 +57,6 @@ namespace FMS_Web_Mvc.Controllers
             return RedirectToAction("OwnerForm");
 
         }
+        
     }
 }
