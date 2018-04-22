@@ -3,10 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Security;
 using FMS_Entities;
 using FMS_Model;
 using FMS_RepositoryOracle;
 using FMS_Web_Framework.Base;
+using Newtonsoft.Json;
 
 namespace FMS_Web_Mvc.Controllers
 {
@@ -77,6 +79,9 @@ namespace FMS_Web_Mvc.Controllers
             {
                 Console.WriteLine(ex.Message);
             }
+
+            var jasonUserInfo = JsonConvert.SerializeObject(obj.Data);
+            FormsAuthentication.SetAuthCookie(jasonUserInfo,false);
             if (obj.Data.UserType.Equals("Owner"))
                 return RedirectToAction("LoginForm");
 

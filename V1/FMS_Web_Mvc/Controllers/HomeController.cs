@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using FMS_Entities;
+using Newtonsoft.Json;
 
 namespace FMS_Web_Mvc.Controllers
 {
@@ -10,6 +12,7 @@ namespace FMS_Web_Mvc.Controllers
     {
         public ActionResult Index()
         {
+            var userInfo = JsonConvert.DeserializeObject<UserInfo>(User.Identity.Name);
             return View();
         }
 
