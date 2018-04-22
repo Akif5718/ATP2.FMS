@@ -26,9 +26,6 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Service", "Service", "{40792964-A37C-4B9A-83D2-5FC13FE1EBED}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Infrastructure", "Infrastructure", "{EC080DBA-B7BF-4345-BF02-7CF091801722}"
-	ProjectSection(SolutionItems) = preProject
-		FMS_Data\DataAccess.cs = FMS_Data\DataAccess.cs
-	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

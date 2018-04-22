@@ -109,9 +109,17 @@
 
                             </div>
                             <div class="col-md-5"></div>
+                          @using (Html.BeginForm("ProjectDetails", "ProjectPost"))
+                          {
+                              
+                         
+                            @Html.HiddenFor(m => m.PostId, new { @class = "form-control" })
                             <div class="col-md-3">
-                                <a href="JobHomeWorker.html" class="btn btn-primary">Interested Bid</a>
+                                 <input type="submit" value="Interested Bid" class="btn btn-primary btn-block" />
+                           
                             </div>
+                          }
+                           
                             &nbsp;
                         </div>
                         <div class="row">

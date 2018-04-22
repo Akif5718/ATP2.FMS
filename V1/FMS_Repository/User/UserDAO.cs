@@ -103,7 +103,7 @@ namespace FMS_RepositoryOracle
 
                     if (dt != null && dt.Rows.Count != 0)
                     {
-                        for (int i = 0; i <= dt.Rows.Count; i++)
+                        for (int i = 0; i < dt.Rows.Count; i++)
                         {
                             UserInfo u = ConvertToEntity(dt.Rows[i]);
                             result.Add(u);

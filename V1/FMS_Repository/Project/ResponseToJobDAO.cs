@@ -62,17 +62,17 @@ namespace FMS_Repository
 
         //    return id;
         //}
-        public List<ResponseToaJob> GetAll()
+        public List<ResponseToaJob> GetAll(int id)
         {
             var result = new List<ResponseToaJob>();
             try
             {
-                string query = "select * from ResponseToaJob";
+                string query = "select * from ResponseToaJob where PostID=" + id;
                 var dt = DataAccess.GetDataTable(query);
 
                 if (dt != null && dt.Rows.Count != 0)
                 {
-                    for (int i = 0; i <= dt.Rows.Count; i++)
+                    for (int i = 0; i <dt.Rows.Count; i++)
                     {
                         ResponseToaJob u = ConvertToEntity(dt.Rows[i]);
                         result.Add(u);
@@ -134,7 +134,7 @@ namespace FMS_Repository
                 u.PostId = Int32.Parse(row["PostID"].ToString());
                 u.WUserId = Int32.Parse(row["WUserID"].ToString());
                 u.FixedPrice = Int32.Parse(row["FixedPrice"].ToString());
-                u.SubmissionTime = row["SubmissionTime"].ToString();
+                u.SubmissionTime = row["SubmissionDate"].ToString();
               
 
 

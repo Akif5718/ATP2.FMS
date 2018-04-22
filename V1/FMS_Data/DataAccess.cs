@@ -8,9 +8,9 @@ using Oracle.ManagedDataAccess.Client;
 
 namespace FMS_Data
 {
-   public class DataAccess
+  public  class DataAccess
     {
-       static string _ConnectionString = "Data Source=localhost:1521/XE;User Id=Freelencertest;Password=freelencer";
+        static string _ConnectionString = "Data Source=localhost:1521/XE;User Id=Freelencertest;Password=freelencer";
 
 
         static OracleConnection _Connection = null;

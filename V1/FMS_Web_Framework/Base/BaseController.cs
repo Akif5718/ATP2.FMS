@@ -122,6 +122,18 @@ namespace FMS_Web_Framework.Base
 
     }
 
+        private static ResponseToJobDAO _response;
+        public static ResponseToJobDAO response
+        {
+            get
+            {
+                if (_response == null)
+                    _response = new ResponseToJobDAO();
+                return _response;
+            }
+
+        }
+
 
 
     }

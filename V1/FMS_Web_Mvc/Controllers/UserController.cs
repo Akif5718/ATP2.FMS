@@ -92,34 +92,7 @@ namespace FMS_Web_Mvc.Controllers
             }
         }
 
-        public ActionResult OwnerForm()
-        {
-
-            return View();
-
-
-        }
-        [HttpPost]
-        public ActionResult OwnerForm(OwnerInfo ownerInfo)
-        {
-
-            try
-            {
-                var result = ownerDao.Save(ownerInfo);
-
-                if (result.HasError)
-                {
-                    ViewBag.Message = result.Message;
-                    return View("RegisterForm", ownerInfo);
-                }
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine(ex.Message);
-            }
-            return RedirectToAction("OwnerForm");
-
-        }
+     
 
         public ActionResult WorkerForm()
         {
@@ -198,6 +171,7 @@ namespace FMS_Web_Mvc.Controllers
             return RedirectToAction("OwnerForm");
 
         }
+
         public ActionResult OwnerProfile()
         {
             var ownerInfo = userDao.GetById(1);

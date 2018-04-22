@@ -103,5 +103,52 @@ namespace FMS_Web_Mvc.Controllers
 
             return View(postProjectModel);
         }
+
+        [HttpPost]
+        public ActionResult ProjectDetails(PostProjectModel PostProjectModel)
+        {
+          
+
+           
+
+            try
+            {
+
+                ResponseToaJob responseto = new ResponseToaJob();
+                responseto.PostId = PostProjectModel.PostId;
+                responseto.WUserId = 1;
+                var result = response.Save(responseto);
+
+                if (result.HasError)
+                {
+                    ViewBag.Message = result.Message;
+                    return View("ProjectDetails", PostProjectModel);
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+            return RedirectToAction("ProjectDetails");
+        }
+
+        public ActionResult RequestedMember()
+        {
+            RequestedMemberModel requested=new RequestedMemberModel();
+            var result = response.GetAll(1);
+
+            var result2 = postProjectDao.GetByID(1);
+            requested.ProjectName = result2.Data.ProjectName;
+            requested.Description = result2.Data.Description;
+            foreach (var user in result)
+            {
+                var result3 = userDao.GetById(user.WUserId);
+                requested.UserInfo.Add(result3.Data);
+
+            }
+            return View(requested);
+        }
+
+
     }
 }
