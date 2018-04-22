@@ -175,9 +175,25 @@
     <None Include="Project_Readme.html" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\FMS_Data\FMS_Data.csproj">
+      <Project>{df9a9af9-d24f-408e-af0f-6f8ea9fd6361}</Project>
+      <Name>FMS_Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\FMS_Entities\FMS_Entities.csproj">
+      <Project>{CE67BCBD-946B-4E6F-98F3-9C9FFD05EC11}</Project>
+      <Name>FMS_Entities</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\FMS_Framework\FMS_Framework.csproj">
+      <Project>{E801C8EB-E853-4A58-AA9D-2C8F7ED77AB6}</Project>
+      <Name>FMS_Framework</Name>
+    </ProjectReference>
     <ProjectReference Include="..\FMS_Model\FMS_Model.csproj">
       <Project>{D259F71B-B95B-4FFB-9C7D-FA54A87A26A5}</Project>
       <Name>FMS_Model</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\FMS_Repository\FMS_RepositoryOracle.csproj">
+      <Project>{143DC45A-D31D-4A4C-9F8E-5D67E09011CC}</Project>
+      <Name>FMS_RepositoryOracle</Name>
     </ProjectReference>
     <ProjectReference Include="..\FMS_Web_Framework\FMS_Web_Framework.csproj">
       <Project>{0CC9387C-8EC7-4394-84E7-EF876578FE57}</Project>
