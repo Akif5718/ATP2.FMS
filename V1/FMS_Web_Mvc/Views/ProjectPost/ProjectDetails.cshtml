@@ -98,6 +98,7 @@
                         <div class="row">
                             <div class="col-md-4">
                                 <h5>About the Owner</h5>
+                                <h5>@Model.UFirstName @Model.ULastName</h5>
                                 <span class="fa fa-star checked"></span>
                                 <span class="fa fa-star checked"></span>
                                 <span class="fa fa-star checked"></span>
@@ -111,19 +112,21 @@
                             <div class="col-md-3">
                                 <a href="JobHomeWorker.html" class="btn btn-primary">Interested Bid</a>
                             </div>
-
+                            &nbsp;
                         </div>
                         <div class="row">
                             <div class="col-md-5">
                                 <h5>Skills Required</h5>
-                                @foreach (var p in Model.SkillId)
+                                @foreach (var p in Model.SkillName)
                                 {
-                                    
+                                    @p
+                                    @:&nbsp;
+
                                 }
                             </div>
                             <div class="col-md-4"></div>
                             <div class="col-md-3">
-                                <h6>Project ID: 16704529</h6>
+                                <h6>Project ID: @Model.PostId</h6>
                             </div>
                         </div>
 

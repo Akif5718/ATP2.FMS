@@ -74,7 +74,7 @@ namespace FMS_Repository
 
                 if (dt != null && dt.Rows.Count != 0)
                 {
-                    for (int i = 0; i <= dt.Rows.Count; i++)
+                    for (int i = 0; i <dt.Rows.Count; i++)
                     {
                         ProjectSkills u = ConvertToEntity(dt.Rows[i]);
                         result.Add(u);
@@ -134,8 +134,8 @@ namespace FMS_Repository
             try
             {
                 ProjectSkills u = new ProjectSkills();
-                u.PostID = Int32.Parse(row["ID"].ToString());
-                u.SkillID = Int32.Parse(row["EarnedMoney"].ToString());
+                u.PostID = Int32.Parse(row["PostId"].ToString());
+                u.SkillID = Int32.Parse(row["SkillId"].ToString());
                
 
 

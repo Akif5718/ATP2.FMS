@@ -36,6 +36,7 @@ namespace FMS_Repository
             }
             return result;
         }
+
         public Result<Skill> GetByID(int id)
         {
             var result = new Result<Skill>();
@@ -60,6 +61,7 @@ namespace FMS_Repository
             }
             return result;
         }
+
         private Skill ConvertToEntity(DataRow row)
         {
             try

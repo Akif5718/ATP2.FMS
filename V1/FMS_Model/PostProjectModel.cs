@@ -16,6 +16,12 @@ namespace FMS_Model
         public string ProjectName { get; set; }
 
         [Required]
+        public string UFirstName { get; set; }
+
+        [Required]
+        public string ULastName { get; set; }
+
+        [Required]
         public double Price { get; set; }
 
         [Required]
@@ -39,8 +45,9 @@ namespace FMS_Model
 
         [Required]
         public List<string> SectionName { get; set; }
-
-        public List<string> SkillName { get; set; }
+       
+        [Required]
+        public List<string> SkillName =new List<string>();
 
 
     }

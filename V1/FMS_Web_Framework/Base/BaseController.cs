@@ -99,6 +99,7 @@ namespace FMS_Web_Framework.Base
         }
 
         private static ProjectSectionDAO _projectSectionDao;
+
         public static ProjectSectionDAO projectSectionDao
         {
             get
@@ -107,7 +108,21 @@ namespace FMS_Web_Framework.Base
                     _projectSectionDao = new ProjectSectionDAO();
                 return _projectSectionDao;
             }
-
         }
+
+        private static SkillsDAO _skillsDao;
+        public static SkillsDAO skillsDao
+    {
+        get
+        {
+            if (_skillsDao == null)
+                _skillsDao = new SkillsDAO();
+            return _skillsDao;
+        }
+
+    }
+
+
+
     }
 }

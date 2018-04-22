@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using FMS_Entities;
 using FMS_Model;
+using FMS_Repository;
 using FMS_Web_Framework.Base;
 
 namespace FMS_Web_Mvc.Controllers
@@ -73,10 +74,10 @@ namespace FMS_Web_Mvc.Controllers
             return View(result);
         }
 
-        public ActionResult ProjectDetails(int id)
+        public ActionResult ProjectDetails(int? id)
         {
-            var result = postProjectDao.GetByID(id);
-            PostProjectModel postProjectModel=new PostProjectModel();
+            var result = postProjectDao.GetByID(1);
+            PostProjectModel postProjectModel= new PostProjectModel();
 
             postProjectModel.ProjectName = result.Data.ProjectName;
             postProjectModel.Description = result.Data.Description;
@@ -89,9 +90,16 @@ namespace FMS_Web_Mvc.Controllers
             var result2 = projectSkillDao.GetAll(result.Data.PostId);
             foreach (var skillid in result2)
             {
-                  postProjectModel.SkillId.Add(skillid.SkillID);
-                //fg
+                var result3 = skillsDao.GetByID(skillid.SkillID);
+
+                postProjectModel.SkillName.Add(result3.Data.SkillName);
+                  
             }
+
+            var result4 = userDao.GetById(result.Data.WUserId);
+            postProjectModel.UFirstName = result4.Data.FristName;
+            postProjectModel.ULastName = result4.Data.LastName;
+
 
             return View(postProjectModel);
         }
