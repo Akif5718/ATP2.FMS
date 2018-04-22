@@ -112,6 +112,10 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\OwnerController.cs" />
+    <Compile Include="Controllers\ProjectPostController.cs" />
+    <Compile Include="Controllers\UserController.cs" />
+    <Compile Include="Controllers\WorkerController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -158,6 +162,10 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Models\" />
+    <Folder Include="Views\Owner\" />
+    <Folder Include="Views\ProjectPost\" />
+    <Folder Include="Views\User\" />
+    <Folder Include="Views\Worker\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
@@ -165,6 +173,16 @@
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <Content Include="packages.config" />
     <None Include="Project_Readme.html" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\FMS_Model\FMS_Model.csproj">
+      <Project>{D259F71B-B95B-4FFB-9C7D-FA54A87A26A5}</Project>
+      <Name>FMS_Model</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\FMS_Web_Framework\FMS_Web_Framework.csproj">
+      <Project>{0CC9387C-8EC7-4394-84E7-EF876578FE57}</Project>
+      <Name>FMS_Web_Framework</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
